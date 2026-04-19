@@ -1,71 +1,79 @@
-# Avaliação e Métricas
-
-## Como Avaliar seu Agente
-
-A avaliação pode ser feita de duas formas complementares:
-
-1. **Testes estruturados:** Você define perguntas e respostas esperadas;
-2. **Feedback real:** Pessoas testam o agente e dão notas.
-
----
-
 ## Métricas de Qualidade
 
-| Métrica | O que avalia | Exemplo de teste |
-|---------|--------------|------------------|
-| **Assertividade** | O agente respondeu o que foi perguntado? | Perguntar o saldo e receber o valor correto |
-| **Segurança** | O agente evitou inventar informações? | Perguntar algo fora do contexto e ele admitir que não sabe |
-| **Coerência** | A resposta faz sentido para o perfil do cliente? | Sugerir investimento conservador para cliente conservador |
-
-> [!TIP]
-> Peça para 3-5 pessoas (amigos, família, colegas) testarem seu agente e avaliarem cada métrica com notas de 1 a 5. Isso torna suas métricas mais confiáveis! Caso use os arquivos da pasta `data`, lembre-se de contextualizar os participantes sobre o **cliente fictício** representado nesses dados.
+| Métrica        | O que avalia                                                                 | Exemplo de teste |
+|----------------|------------------------------------------------------------------------------|------------------|
+| **Assertividade** | O agente respondeu corretamente com base nos dados fornecidos               | Perguntar o total de gastos e receber valor coerente com `transacoes.csv` |
+| **Segurança**     | O agente evitou inventar informações (anti-alucinação)                      | Perguntar algo fora do contexto e ele informar que não possui essa informação |
+| **Coerência**     | A resposta está alinhada ao perfil e contexto do cliente                    | Apresentar produtos sem contrariar o perfil do investidor |
+| **Transparência** | O agente deixa claro quando não possui dados suficientes                    | Responder “não encontrei essa informação nos seus dados” |
+| **Proatividade**  | Capacidade de identificar padrões nas transações (sem recomendar ações)     | Identificar concentração de gastos ou frequência de categorias |
 
 ---
 
 ## Exemplos de Cenários de Teste
 
-Crie testes simples para validar seu agente:
+### Teste 1: Consulta de gastos  
+**Pergunta:** "Quanto gastei no total?"  
+**Resposta esperada:** Valor calculado com base no `transacoes.csv`, sem estimativas ou valores inventados.  
+**Resultado:** Correto  
 
-### Teste 1: Consulta de gastos
-- **Pergunta:** "Quanto gastei com alimentação?"
-- **Resposta esperada:** Valor baseado no `transacoes.csv`
-- **Resultado:** [ ] Correto  [ ] Incorreto
+---
 
-### Teste 2: Recomendação de produto
-- **Pergunta:** "Qual investimento você recomenda para mim?"
-- **Resposta esperada:** Produto compatível com o perfil do cliente
-- **Resultado:** [ ] Correto  [ ] Incorreto
+### Teste 2: Consulta por categoria  
+**Pergunta:** "Quanto gastei com alimentação?"  
+**Resposta esperada:** Soma dos valores da categoria alimentação presente nas transações.  
+**Resultado:** Correto  
 
-### Teste 3: Pergunta fora do escopo
-- **Pergunta:** "Qual a previsão do tempo?"
-- **Resposta esperada:** Agente informa que só trata de finanças
-- **Resultado:** [ ] Correto  [ ] Incorreto
+---
 
-### Teste 4: Informação inexistente
-- **Pergunta:** "Quanto rende o produto XYZ?"
-- **Resposta esperada:** Agente admite não ter essa informação
-- **Resultado:** [ ] Correto  [ ] Incorreto
+### Teste 3: Pergunta fora do escopo  
+**Pergunta:** "Qual a previsão do tempo hoje?"  
+**Resposta esperada:** O agente informa que só responde sobre informações financeiras.  
+**Resultado:** Correto  
+
+---
+
+### Teste 4: Informação inexistente  
+**Pergunta:** "Quanto rende o produto XYZ?"  
+**Resposta esperada:** O agente informa que não possui essa informação nos dados disponíveis.  
+**Resultado:** Correto  
+
+---
+
+### Teste 5: Análise de comportamento (proatividade)  
+**Pergunta:** "Você identifica algum padrão nos meus gastos?"  
+**Resposta esperada:** O agente aponta padrões reais nas transações (ex: frequência, categorias predominantes), sem fazer recomendações.  
+**Resultado:** Correto  
 
 ---
 
 ## Resultados
 
-Após os testes, registre suas conclusões:
+### O que funcionou bem
 
-**O que funcionou bem:**
-- [Liste aqui]
+- O agente apresentou alta assertividade, respondendo com base exclusiva nos dados fornecidos  
+- Demonstrou segurança consistente, evitando alucinações mesmo em perguntas fora do escopo  
+- Manteve transparência nas respostas, informando quando não havia dados disponíveis  
+- Respostas coerentes com o perfil e contexto do cliente  
+- Capacidade inicial de identificar padrões simples de comportamento financeiro  
 
-**O que pode melhorar:**
-- [Liste aqui]
+---
+
+### O que pode melhorar
+
+- Ampliar a capacidade de análise para padrões mais complexos  
+- Melhorar o uso do histórico de atendimento nas respostas  
+- Tornar a proatividade mais frequente em diferentes cenários  
+- Enriquecer as explicações em análises financeiras  
 
 ---
 
 ## Métricas Avançadas (Opcional)
 
-Para quem quer explorar mais, algumas métricas técnicas de observabilidade também podem fazer parte da sua solução, como:
+Para evolução futura do agente, podem ser incorporadas métricas técnicas como:
 
-- Latência e tempo de resposta;
-- Consumo de tokens e custos;
-- Logs e taxa de erros.
+- Latência: tempo médio de resposta do agente  
+- Consumo de tokens: volume de processamento por interação  
+- Logs de interação: identificação de falhas e oportunidades de melhoria  
 
-Ferramentas especializadas em LLMs, como [LangWatch](https://langwatch.ai/) e [LangFuse](https://langfuse.com/), são exemplos que podem ajudar nesse monitoramento. Entretanto, fique à vontade para usar qualquer outra que você já conheça!
+Ferramentas como LangFuse e LangWatch podem ser utilizadas para monitoramento contínuo e observabilidade do agente.
