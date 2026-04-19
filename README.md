@@ -1,110 +1,122 @@
-# 🤖 Agente Financeiro Inteligente com IA Generativa
+# Agente Financeiro Inteligente com IA Generativa
 
 ## Contexto
 
-Os assistentes virtuais no setor financeiro estão evoluindo de simples chatbots reativos para **agentes inteligentes e proativos**. Neste desafio, você vai idealizar e prototipar um agente financeiro que utiliza IA Generativa para:
+Os assistentes virtuais no setor financeiro estão evoluindo de simples chatbots reativos para agentes mais inteligentes, capazes de considerar o contexto do cliente e oferecer interações mais seguras e personalizadas.
 
-- **Antecipar necessidades** ao invés de apenas responder perguntas
-- **Personalizar** sugestões com base no contexto de cada cliente
-- **Cocriar soluções** financeiras de forma consultiva
-- **Garantir segurança** e confiabilidade nas respostas (anti-alucinação)
+Neste projeto, foi desenvolvido o **Gui — um agente educador financeiro**, que utiliza IA Generativa com foco em:
 
-> [!TIP]
-> Na pasta [`examples/`](./examples/) você encontra referências de implementação para cada etapa deste desafio.
+- Antecipar necessidades por meio da análise de dados do cliente  
+- Personalizar respostas com base no perfil e histórico financeiro  
+- Promover educação financeira de forma clara e acessível  
+- Garantir segurança e confiabilidade, evitando alucinações  
+
+> O agente foi projetado para atuar como educador financeiro, não como consultor de investimentos.
 
 ---
 
-## O Que Você Deve Entregar
+## O Que Foi Desenvolvido
 
 ### 1. Documentação do Agente
 
-Defina **o que** seu agente faz e **como** ele funciona:
+O agente Gui foi definido com base nos seguintes elementos:
 
-- **Caso de Uso:** Qual problema financeiro ele resolve? (ex: consultoria de investimentos, planejamento de metas, alertas de gastos)
-- **Persona e Tom de Voz:** Como o agente se comporta e se comunica?
-- **Arquitetura:** Fluxo de dados e integração com a base de conhecimento
-- **Segurança:** Como evitar alucinações e garantir respostas confiáveis?
+- **Caso de Uso:** Apoiar o cliente na compreensão de sua situação financeira, analisando gastos e fornecendo informações com base em dados reais  
+- **Persona e Tom de Voz:** Educador financeiro, com linguagem clara, objetiva e acessível  
+- **Arquitetura:** Integração entre interface em Streamlit, modelo de linguagem local (Ollama) e base de conhecimento estruturada  
+- **Segurança:** Regras explícitas no system prompt para evitar alucinações e garantir respostas confiáveis  
 
-📄 **Template:** [`docs/01-documentacao-agente.md`](./docs/01-documentacao-agente.md)
+📄 [`docs/01-documentacao-agente.md`](./docs/01-documentacao-agente.md)
 
 ---
 
 ### 2. Base de Conhecimento
 
-Utilize os **dados mockados** disponíveis na pasta [`data/`](./data/) para alimentar seu agente:
+O agente utiliza dados mockados estruturados para simular o contexto de um cliente real:
 
 | Arquivo | Formato | Descrição |
 |---------|---------|-----------|
 | `transacoes.csv` | CSV | Histórico de transações do cliente |
-| `historico_atendimento.csv` | CSV | Histórico de atendimentos anteriores |
-| `perfil_investidor.json` | JSON | Perfil e preferências do cliente |
-| `produtos_financeiros.json` | JSON | Produtos e serviços disponíveis |
+| `historico_atendimento.csv` | CSV | Interações anteriores |
+| `perfil_investidor.json` | JSON | Perfil e preferências |
+| `produtos_financeiros.json` | JSON | Produtos disponíveis |
 
-Você pode adaptar ou expandir esses dados conforme seu caso de uso.
+Esses dados são carregados e utilizados diretamente no contexto do modelo, garantindo respostas baseadas exclusivamente em informações disponíveis.
 
-📄 **Template:** [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md)
+📄 [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md)
 
 ---
 
 ### 3. Prompts do Agente
 
-Documente os prompts que definem o comportamento do seu agente:
+O comportamento do Gui é controlado por um system prompt estruturado, com foco em:
 
-- **System Prompt:** Instruções gerais de comportamento e restrições
-- **Exemplos de Interação:** Cenários de uso com entrada e saída esperada
-- **Tratamento de Edge Cases:** Como o agente lida com situações limite
+- Responder apenas com base nos dados fornecidos  
+- Não inventar informações ou valores  
+- Informar explicitamente quando não houver dados disponíveis  
+- Atuar como educador, sem recomendar investimentos  
 
-📄 **Template:** [`docs/03-prompts.md`](./docs/03-prompts.md)
+Também foram definidos cenários de interação e tratamento de edge cases.
+
+📄 [`docs/03-prompts.md`](./docs/03-prompts.md)
 
 ---
 
 ### 4. Aplicação Funcional
 
-Desenvolva um **protótipo funcional** do seu agente:
+Foi desenvolvido um protótipo funcional utilizando:
 
-- Chatbot interativo (sugestão: Streamlit, Gradio ou similar)
-- Integração com LLM (via API ou modelo local)
-- Conexão com a base de conhecimento
+- **Streamlit** para interface interativa  
+- **Ollama** para execução de modelo de linguagem local  
+- **Python (Pandas + JSON)** para manipulação da base de conhecimento  
 
-📁 **Pasta:** [`src/`](./src/)
+Funcionalidades:
+
+- Chat interativo com histórico de conversa  
+- Respostas baseadas exclusivamente nos dados exibidos  
+- Visualização da base de conhecimento na barra lateral  
+- Tratamento de erros e respostas fora do escopo  
+
+📁 [`src/`](./src/)
 
 ---
 
 ### 5. Avaliação e Métricas
 
-Descreva como você avalia a qualidade do seu agente:
+A avaliação do agente foi realizada com base em:
 
-**Métricas Sugeridas:**
-- Precisão/assertividade das respostas
-- Taxa de respostas seguras (sem alucinações)
-- Coerência com o perfil do cliente
+- Assertividade das respostas  
+- Segurança (ausência de alucinação)  
+- Coerência com o perfil do cliente  
+- Transparência ao lidar com dados inexistentes  
+- Capacidade de identificar padrões simples de comportamento  
 
-📄 **Template:** [`docs/04-metricas.md`](./docs/04-metricas.md)
+Foram realizados testes estruturados e validação com usuários.
+
+📄 [`docs/04-metricas.md`](./docs/04-metricas.md)
 
 ---
 
 ### 6. Pitch
 
-Grave um **pitch de 3 minutos** (estilo elevador) apresentando:
+Foi desenvolvido um pitch de 3 minutos apresentando:
 
-- Qual problema seu agente resolve?
-- Como ele funciona na prática?
-- Por que essa solução é inovadora?
+- O problema dos assistentes financeiros atuais  
+- A solução proposta pelo agente Gui  
+- Demonstração prática da aplicação  
+- Diferenciais e impacto da solução  
 
-📄 **Template:** [`docs/05-pitch.md`](./docs/05-pitch.md)
+📄 [`docs/05-pitch.md`](./docs/05-pitch.md)
 
 ---
 
-## Ferramentas Sugeridas
+## Tecnologias Utilizadas
 
-Todas as ferramentas abaixo possuem versões gratuitas:
-
-| Categoria | Ferramentas |
-|-----------|-------------|
-| **LLMs** | [ChatGPT](https://chat.openai.com/), [Copilot](https://copilot.microsoft.com/), [Gemini](https://gemini.google.com/), [Claude](https://claude.ai/), [Ollama](https://ollama.ai/) |
-| **Desenvolvimento** | [Streamlit](https://streamlit.io/), [Gradio](https://www.gradio.app/), [Google Colab](https://colab.research.google.com/) |
-| **Orquestração** | [LangChain](https://www.langchain.com/), [LangFlow](https://www.langflow.org/), [CrewAI](https://www.crewai.com/) |
-| **Diagramas** | [Mermaid](https://mermaid.js.org/), [Draw.io](https://app.diagrams.net/), [Excalidraw](https://excalidraw.com/) |
+- Python  
+- Streamlit  
+- Ollama (modelo local LLM)  
+- Pandas  
+- JSON  
 
 ---
 
@@ -113,37 +125,47 @@ Todas as ferramentas abaixo possuem versões gratuitas:
 ```
 📁 lab-agente-financeiro/
 │
-├── 📄 README.md
+├── README.md
 │
-├── 📁 data/                          # Dados mockados para o agente
-│   ├── historico_atendimento.csv     # Histórico de atendimentos (CSV)
-│   ├── perfil_investidor.json        # Perfil do cliente (JSON)
-│   ├── produtos_financeiros.json     # Produtos disponíveis (JSON)
-│   └── transacoes.csv                # Histórico de transações (CSV)
+├── data/
+│ ├── historico_atendimento.csv
+│ ├── perfil_investidor.json
+│ ├── produtos_financeiros.json
+│ └── transacoes.csv
 │
-├── 📁 docs/                          # Documentação do projeto
-│   ├── 01-documentacao-agente.md     # Caso de uso e arquitetura
-│   ├── 02-base-conhecimento.md       # Estratégia de dados
-│   ├── 03-prompts.md                 # Engenharia de prompts
-│   ├── 04-metricas.md                # Avaliação e métricas
-│   └── 05-pitch.md                   # Roteiro do pitch
+├── docs/
+│ ├── 01-documentacao-agente.md
+│ ├── 02-base-conhecimento.md
+│ ├── 03-prompts.md
+│ ├── 04-metricas.md
+│ └── 05-pitch.md
 │
-├── 📁 src/                           # Código da aplicação
-│   └── app.py                        # (exemplo de estrutura)
+├── src/
+│ └── app.py
 │
-├── 📁 assets/                        # Imagens e diagramas
-│   └── ...
+├── assets/
 │
-└── 📁 examples/                      # Referências e exemplos
-    └── README.md
-```
+└── examples/
+
+---
+
+
+## Como Executar o Projeto
+
+1. Instale as dependências:
+2. Execute a aplicação:
+3. Certifique-se de que o Ollama está em execução com o modelo configurado.
+
+> Observação: devido a limitações de memória RAM, a execução do modelo foi realizada em ambiente alternativo para garantir o funcionamento completo da aplicação.
 
 ---
 
 ## Dicas Finais
 
-1. **Comece pelo prompt:** Um bom system prompt é a base de um agente eficaz
-2. **Use os dados mockados:** Eles garantem consistência e evitam problemas com dados sensíveis
-3. **Foque na segurança:** No setor financeiro, evitar alucinações é crítico
-4. **Teste cenários reais:** Simule perguntas que um cliente faria de verdade
-5. **Seja direto no pitch:** 3 minutos passam rápido, vá ao ponto
+- O system prompt é o principal responsável pelo comportamento do agente  
+- A base de dados define os limites de conhecimento do modelo  
+- A segurança é essencial em aplicações financeiras  
+- Testes com cenários reais são fundamentais para validação  
+- A clareza na comunicação melhora a experiência do usuário  
+
+---
