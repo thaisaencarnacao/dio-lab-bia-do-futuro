@@ -1,4 +1,4 @@
-# 02 — Base de Conhecimento: A Fundação do Gui
+#  Base de Conhecimento: A Fundação do Gui
 
 ## Dados Utilizados
 
