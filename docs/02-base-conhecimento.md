@@ -11,9 +11,6 @@ A inteligência do Gui é construída sobre um conjunto de dados mockados, cuida
 | `produtos_financeiros.json` | JSON | Contém a descrição dos produtos e serviços do Bradesco, capacitando o Gui a educar o cliente sobre suas opções de forma clara e objetiva. |
 | `transacoes.csv` | CSV | Habilita o Gui a analisar padrões de gastos, identificar oportunidades de otimização e conectar a gestão financeira diária às metas de longo prazo do cliente. |
 
-> [!TIP]
-> **Quer um dataset mais robusto?** Você pode utilizar datasets públicos do [Hugging Face](https://huggingface.co/datasets) relacionados a finanças, desde que sejam adequados ao contexto do desafio.
-
 ---
 
 ## Adaptações nos Dados
