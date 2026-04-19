@@ -1,4 +1,4 @@
-# 03 — Prompts do Agente: A Voz e a Inteligência do Gui
+#  Prompts do Agente: A Voz e a Inteligência do Gui
 
 ## System Prompt
 IDENTIDADE E PROPÓSITO
