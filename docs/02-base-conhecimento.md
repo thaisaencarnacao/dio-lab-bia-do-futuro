@@ -1,15 +1,15 @@
-# Base de Conhecimento
+# 02 — Base de Conhecimento: A Fundação do Gui
 
 ## Dados Utilizados
 
-Descreva se usou os arquivos da pasta `data`, por exemplo:
+A inteligência do Gui é construída sobre um conjunto de dados mockados, cuidadosamente selecionados para simular um cenário real de cliente do Bradesco. Estes dados são a **única fonte de verdade** para o agente, garantindo respostas factuais e personalizadas.
 
 | Arquivo | Formato | Utilização no Agente |
 |---------|---------|---------------------|
-| `historico_atendimento.csv` | CSV | Contextualizar interações anteriores |
-| `perfil_investidor.json` | JSON | Personalizar recomendações |
-| `produtos_financeiros.json` | JSON | Sugerir produtos adequados ao perfil |
-| `transacoes.csv` | CSV | Analisar padrão de gastos do cliente |
+| `historico_atendimento.csv` | CSV | Permite ao Gui reconhecer interações passadas, oferecendo uma experiência de atendimento contínua e contextualizada. |
+| `perfil_investidor.json` | JSON | Define a identidade e as características financeiras do cliente (João Silva), essencial para personalizar explicações e alinhar produtos às suas metas e perfil de risco. |
+| `produtos_financeiros.json` | JSON | Contém a descrição dos produtos e serviços do Bradesco, capacitando o Gui a educar o cliente sobre suas opções de forma clara e objetiva. |
+| `transacoes.csv` | CSV | Habilita o Gui a analisar padrões de gastos, identificar oportunidades de otimização e conectar a gestão financeira diária às metas de longo prazo do cliente. |
 
 > [!TIP]
 > **Quer um dataset mais robusto?** Você pode utilizar datasets públicos do [Hugging Face](https://huggingface.co/datasets) relacionados a finanças, desde que sejam adequados ao contexto do desafio.
@@ -18,29 +18,24 @@ Descreva se usou os arquivos da pasta `data`, por exemplo:
 
 ## Adaptações nos Dados
 
-> Você modificou ou expandiu os dados mockados? Descreva aqui.
-
-[Sua descrição aqui]
+Para este protótipo, os dados mockados fornecidos na pasta `data/` foram utilizados **integralmente, sem modificações ou expansões**. Esta abordagem simples e direta demonstra a capacidade do agente de operar com uma base de conhecimento pré-existente, focando na eficácia da engenharia de prompt e na lógica de integração.
 
 ---
 
-## Estratégia de Integração
+## Estratégia de Integração: Contexto para o LLM
 
 ### Como os dados são carregados?
-> Descreva como seu agente acessa a base de conhecimento.
-
-[ex: Os JSON/CSV são carregados no início da sessão e incluídos no contexto do prompt]
+Os arquivos JSON e CSV são carregados de forma eficiente no início da sessão da aplicação Streamlit. Esta etapa garante que todas as informações relevantes estejam prontas para serem processadas.
 
 ### Como os dados são usados no prompt?
-> Os dados vão no system prompt? São consultados dinamicamente?
-
-[Sua descrição aqui]
+Todos os dados carregados são dinamicamente formatados e **injetados diretamente no System Prompt** enviado ao LLM (Ollama). Esta estratégia de "context window" assegura que o modelo tenha acesso completo e imediato a todo o universo de informações do cliente e do Bradesco em cada interação, resultando em respostas altamente personalizadas, precisas e aderentes à base de conhecimento.
 
 ---
 
 ## Exemplo de Contexto Montado
 
-> Mostre um exemplo de como os dados são formatados para o agente.
+Abaixo, um exemplo ilustrativo de como os dados são estruturados e apresentados ao LLM dentro do System Prompt, garantindo que o Gui tenha todas as informações necessárias para uma interação inteligente:
+
 
 ```
 Dados do Cliente:
