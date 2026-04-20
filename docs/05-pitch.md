@@ -76,6 +76,6 @@ O impacto dessa solução está em oferecer uma ferramenta mais confiável para 
 
 ## Link do Vídeo
 
-> Cole aqui o link do seu pitch (YouTube, Loom, Google Drive, etc.)
+> (https://youtu.be/GYEQSTPwnto)
 
 [Link do vídeo]
