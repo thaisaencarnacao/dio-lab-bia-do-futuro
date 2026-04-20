@@ -1,4 +1,4 @@
-# Agente Financeiro Inteligente com IA Generativa
+# Gui, o Agente Financeiro Inteligente com IA Generativa
 
 ## Contexto
 
